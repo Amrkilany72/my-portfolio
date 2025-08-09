@@ -1,0 +1,15 @@
+/* App.module.css */
+
+.appContainer {
+  color: white;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.pageContent {
+  padding: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}

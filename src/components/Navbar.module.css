@@ -1,0 +1,89 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.hamburger {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.hamburger span {
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+.hamburger.open span:first-child {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:last-child {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(0px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: all 0.6s ease;
+  z-index: 999;
+}
+
+.overlay.show {
+  backdrop-filter: blur(8px);
+  transform: translateY(0);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.menu a {
+  color: black;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.overlay.show .menu a:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.overlay.show .menu a:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
