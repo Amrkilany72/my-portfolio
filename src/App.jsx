@@ -7,24 +7,18 @@ import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 
-import styles from './App.module.css';
-
 export default function App() {
   return (
     <>
       <AnimatedBackground />
-      <div className={styles.appContainer}>
-        <Navbar />
-        <div className={styles.pageContent}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

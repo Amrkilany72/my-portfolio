@@ -1,8 +1,23 @@
-body,
-html,
-#root {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root {
+  /* Colors */
+  --icon-color: #979797;
+  --icon-hover-color: #eaeaea;
+  --text-color: #f0f0f0;
+  --accent-color: #979797;
+  --hover-bg: #4d4d4d;
+
+  /* Typography */
+  --font-main: 'Poppins', sans-serif;
+
+  /* Effects */
+  --icon-opacity: 0.7;
+  --transition-fast: 0.3s ease;
+}
+body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow-x: hidden;
+  font-family: var(--font-main);
+  background-color: #121212;
+  color: var(--text-color);
 }

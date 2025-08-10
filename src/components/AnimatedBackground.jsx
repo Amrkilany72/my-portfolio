@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import styles from './AnimatedBackground.module.css';
 
-export default function AnimatedBackground() {
+const AnimatedBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -11,36 +11,39 @@ export default function AnimatedBackground() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const backgroundColor = '#010a13'; // أزرق داكن جدًا
+    let stars = [];
 
-    const stars = Array.from({ length: 100 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.5,
-      speed: Math.random() * 0.5 + 0.2,
-    }));
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        alpha: Math.random(),
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
 
-    function draw() {
+    const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = backgroundColor;
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#ffffff';
       stars.forEach((star) => {
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
         ctx.fill();
+
+        star.x += star.dx;
+        star.y += star.dy;
+
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
       });
 
       requestAnimationFrame(draw);
-    }
+    };
 
     draw();
 
@@ -54,4 +57,6 @@ export default function AnimatedBackground() {
   }, []);
 
   return <canvas ref={canvasRef} className={styles.canvas} />;
-}
+};
+
+export default AnimatedBackground;

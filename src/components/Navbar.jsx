@@ -1,33 +1,35 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>My Logo</div>
-        <div
-          className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-
-      <div className={`${styles.overlay} ${isOpen ? styles.show : ''}`}>
-        <div className={styles.menu}>
-          <Link to="/" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-          <Link to="/about" onClick={() => setIsOpen(false)}>
-            About
-          </Link>
-        </div>
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+const Navbar = () => (
+  <nav className={styles.navbar}>
+    <div className={styles.left}>
+      <div className={styles.burger}>
+        <div className={styles.line}></div>
+        <div className={styles.line}></div>
       </div>
-    </>
-  );
-}
+    </div>
+    <div className={styles.center}>
+      <a
+        href="https://github.com/amr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaGithub className={styles.icon} />
+      </a>
+      <a
+        href="https://linkedin.com/in/amr"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaLinkedin className={styles.icon} />
+      </a>
+    </div>
+    <div className={styles.right}>
+      <a href="/contact" className={styles.icon}>
+        <HiOutlineMail />
+      </a>
+    </div>
+  </nav>
+);
+export default Navbar;
